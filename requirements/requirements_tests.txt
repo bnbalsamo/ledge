@@ -1,0 +1,7 @@
+# Tests
+tox
+tox-pyenv
+pytest
+pytest-cov
+pytest-mock
+pytest-twisted

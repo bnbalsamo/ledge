@@ -1,0 +1,5 @@
+exclude **
+include LICENSE*
+include README*
+include setup.py
+graft src
