@@ -1,4 +1,4 @@
-# ledge [![v0.0.1](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/bnbalsamo/ledge/releases)
+# ledge [![v0.1.0](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/bnbalsamo/ledge/releases)
 
 [![Build Status](https://travis-ci.org/bnbalsamo/ledge.svg?branch=master)](https://travis-ci.org/bnbalsamo/ledge) [![Coverage Status](https://coveralls.io/repos/github/bnbalsamo/ledge/badge.svg?branch=master)](https://coveralls.io/github/bnbalsamo/ledge?branch=master) [![Documentation Status](https://readthedocs.org/projects/ledge/badge/?version=latest)](http://ledge.readthedocs.io/en/latest/?badge=latest) [![Updates](https://pyup.io/repos/github/bnbalsamo/ledge/shield.svg)](https://pyup.io/repos/github/bnbalsamo/ledge/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
