@@ -11,7 +11,7 @@ URL = 'https://github.com/bnbalsamo/ledge'
 PYTHON_REQUIRES= ">=3.6,<4"
 INSTALL_REQUIRES = [
     "twisted",
-    "environ-config>=20.2.0",
+    "environ-config>=19.1.0",
     "structlog",
 ]
 ENTRY_POINTS = {
