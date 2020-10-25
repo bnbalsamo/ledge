@@ -4,14 +4,14 @@ from setuptools import setup, find_packages
 # Provided Package Metadata
 NAME = "ledge"
 DESCRIPTION = "A pluggable webhook catcher."
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 AUTHOR = "Brian Balsamo"
 AUTHOR_EMAIL = "Brian@BrianBalsamo.com"
 URL = 'https://github.com/bnbalsamo/ledge'
 PYTHON_REQUIRES= ">=3.6,<4"
 INSTALL_REQUIRES = [
     "twisted",
-    "environ-config>=20.1.0",
+    "environ-config>=20.2.0",
     "structlog",
 ]
 ENTRY_POINTS = {
