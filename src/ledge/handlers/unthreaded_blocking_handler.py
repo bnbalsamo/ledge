@@ -26,7 +26,7 @@ class UnThreadedBlockingHandler(HandlerImplementation):
     responses to block.
     """
 
-    NOT_THREAD_SAFE = True  # <-- what causes the breaking
+    THREAD_SAFE = False  # <-- what causes the breaking
     name = "unthreaded_blocking_handler"
 
     def handles(self, request, content):

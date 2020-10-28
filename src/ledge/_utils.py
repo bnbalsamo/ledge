@@ -5,25 +5,6 @@ from itertools import chain
 from uuid import uuid4
 
 import structlog
-from twisted.internet import reactor, task, threads
-
-
-def callInThread_or_callLater(kls, func, *args):  # pylint: disable=invalid-name
-    """
-    Implement the interface for plugin defined async strategies.
-
-    Calls "kls.func" with *args via either
-    :func:`twisted.internet.task.deferLater` or
-    :func:`twisted.internet.threads.deferToThread`
-
-    If the class has a "NOT_THREAD_SAFE" attr set to a truth-y value
-    use callLater, otherwise use callInThread.
-    """
-    # This is a kind of generous assumption to make, but it provides
-    # the kind of async behavior expected in webhook implementations
-    if hasattr(kls, "NOT_THREAD_SAFE") and kls.NOT_THREAD_SAFE:
-        return task.deferLater(reactor, 0, func, *args)
-    return threads.deferToThread(func, *args)
 
 
 def inject_logger(request):

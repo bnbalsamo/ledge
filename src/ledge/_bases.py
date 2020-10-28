@@ -2,8 +2,9 @@
 from typing import Optional
 
 import environ
+from twisted.internet import reactor, task, threads
 
-from ledge._utils import callInThread_or_callLater, make_name_safe
+from ledge._utils import make_name_safe
 
 unset_names = {
     "default": "UNSET_NAME",
@@ -64,6 +65,11 @@ class _Configurable:
 class HandlerImplementation(_Configurable):
     """Interface for classes that provide handlers."""
 
+    #: Whether or not the handler is thread safe.
+    #: Defaults to true. If set to false the handler will run in
+    #: the reactor thread (blocking it).
+    THREAD_SAFE = True
+
     #: The handler's name. Used for logging and naming the subconfig.
     #: Override this in your plugin implementation. Leaving it set to the
     #: default will raise an error on init-ing your implementation.
@@ -103,7 +109,7 @@ class HandlerImplementation(_Configurable):
         Implement this in your subclass.
 
         Note that this method will be run its own thread, unless
-        cls.NOT_THREAD_SAFE is truthy.
+        self.THREAD_SAFE is false-y.
 
         :param twisted.web.http.Request request: The incoming request.
         :param bytes content: The content of the incoming request.
@@ -127,7 +133,9 @@ class HandlerImplementation(_Configurable):
         request.logger.msg(f"Handler {self.name} processing request.")
         if self.handles(request, content):
             request.logger.msg(f"Handler {self.name} handles this request.")
-            return callInThread_or_callLater(self, self.handle, request, content)
+            if hasattr(self, "THREAD_SAFE") and (not self.THREAD_SAFE):
+                return task.deferLater(reactor, 0, self.handle, request, content)
+            return threads.deferToThread(self.handle, request, content)
         request.logger.msg(f"Handler {self.name} doesn't handle this request.")
         return None
 
