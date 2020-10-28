@@ -4,7 +4,7 @@
 
 __author__ = "Brian Balsamo"
 __email__ = "Brian@BrianBalsamo.com"
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 
 from ._bases import HandlerImplementation, ResponderImplementation
